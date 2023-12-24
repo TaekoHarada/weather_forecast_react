@@ -32,9 +32,9 @@ export function Location() {
       } else {
         throw new Error(response.status);
       }
-    } catch (err) {
-      console.error("ERROR", err);
-      return err;
+    } catch (error) {
+      console.error("ERROR", error);
+      return error;
     }
   }
 
@@ -51,52 +51,57 @@ export function Location() {
       } else {
         throw new Error(response.status);
       }
-    } catch (err) {
-      console.error("ERROR", err);
-      return err;
+    } catch (error) {
+      console.error("ERROR", error);
+      return error;
     }
   }
 
+  const onComponentMount = async () => {
+    try {
+      console.log("Component is mounted!");
+
+      const city_data = await getCityData(city);
+      const weather_data = await getWeatherData(
+        city_data[0].lat,
+        city_data[0].lon
+      );
+
+      // Update the state with the fetched weather data
+      setWeather(weather_data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return error;
+    } finally {
+      // Set loading to false after fetching data
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const onComponentMount = async () => {
-      try {
-        console.log("Component is mounted!");
-
-        const city_data = await getCityData(city);
-        const weather_data = await getWeatherData(
-          city_data[0].lat,
-          city_data[0].lon
-        );
-
-        // Update the state with the fetched weather data
-        setWeather(weather_data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        // Set loading to false after fetching data
-        setLoading(false);
-      }
-    };
-
     // Call the function when the component first mounts
     onComponentMount();
   }, []);
 
   if (loading) {
     return (
-      <React.Fragment>
-        <h1 style={{ color: "red" }}>{city}</h1>
+      <div className="location">
+        <h2>{city}</h2>
         <SearchForecast city={city} setCity={setCity} />
         <div>Loading...</div>
-      </React.Fragment>
+      </div>
     );
   } else {
     return (
-      <React.Fragment>
-        <h1 style={{ color: "red" }}>{city}</h1>
-        <SearchForecast city={city} setCity={setCity} />
+      <div className="location">
+        <h2>{city}</h2>
+        <SearchForecast
+          city={city}
+          setCity={setCity}
+          onComponentMount={onComponentMount}
+        />
         <ThreeDaysForecast weather={weather} />
-      </React.Fragment>
+      </div>
     );
   }
 }

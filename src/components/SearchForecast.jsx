@@ -3,15 +3,15 @@
 
 import React from "react";
 
-export function SearchForecast({ city, setCity }) {
+export function SearchForecast({ city, setCity, onComponentMount }) {
   function handleSubmit(e) {
     e.preventDefault();
     console.log("Event !!");
+    onComponentMount(city);
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="search_form">SearchForecast</div>
       <label htmlFor="search_box">Location</label>
       <input
         id="search_box"

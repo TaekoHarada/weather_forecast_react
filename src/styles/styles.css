@@ -2,11 +2,12 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 body {
-  background-color: #dee0df;
-  margin: 0;
+  background-color: #f5f5f5;
+  margin: 0 auto;
 }
 
-header {
+header,
+footer {
   background-color: deepskyblue;
   background-image: linear-gradient(
     to right,
@@ -14,14 +15,6 @@ header {
     rgb(15, 94, 128, 0.3)
   );
   color: white;
-  padding-left: 15px;
-  width: 100%;
-  position: relative;
-  top: 0;
-  left: 0;
-}
-
-header h1 {
   padding: 10px;
 }
 
@@ -42,18 +35,15 @@ form p {
 form label {
   display: block;
   margin: 5px;
-}
-
-label {
   color: #444444;
   font-weight: bold;
 }
 
-form #city {
+form #search_box {
   border: 2px solid gray;
   border-radius: 5px;
 }
-#search_btn {
+.search_btn {
   background-color: gray;
   border: solid 2px gray;
   border-radius: 10px;
@@ -61,22 +51,24 @@ form #city {
   font-weight: bold;
   font-size: 15px;
 }
-.search {
-  display: flex;
-  align-items: flex-end;
-}
 
-#search_btn:hover {
+.search_btn:hover {
   background-color: deepskyblue;
+  cursor: pointer;
 }
 
-.forecasts {
-  text-align: center;
+#container {
+  display: flex;
+  justify-content: center;
+}
+.location {
+  margin: 10px;
+}
+.three_days_forecast {
+  background-color: white;
 }
 
-.day_1,
-.day_2,
-.day_3 {
+.forecast {
   /* border: 2px solid #737373; */
   border-radius: 15px;
   background-color: #969696c0;
@@ -89,9 +81,6 @@ form #city {
   color: white;
   padding: 20px;
   margin: 10px;
-}
-section label {
-  color: white;
 }
 
 .date {
