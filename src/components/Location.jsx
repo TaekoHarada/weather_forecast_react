@@ -12,7 +12,7 @@ export function Location() {
   const [weather, setWeather] = useState({});
   const [loading, setLoading] = useState(true); //until fetching weather data, do not show weather information
 
-  // get lat and lon from city name
+  // fetch city imformation (OpenWeather) including the location by city name
   async function getCityData(city_name) {
     try {
       const response = await fetch(
@@ -38,7 +38,7 @@ export function Location() {
     }
   }
 
-  //get weather data from its position(lat, lon)
+  //get weather data (OpenWeather) by the location(lat, lon)
   async function getWeatherData(lat, lon) {
     try {
       const response = await fetch(
@@ -60,8 +60,11 @@ export function Location() {
   const onComponentMount = async () => {
     try {
       console.log("Component is mounted!");
-
+      // fetch city imformation by city name
       const city_data = await getCityData(city);
+      // convert the city name to the name in OpenWeather data
+      setCity(city_data[0].name);
+      // fetch weather imformation by city's location
       const weather_data = await getWeatherData(
         city_data[0].lat,
         city_data[0].lon
@@ -70,6 +73,8 @@ export function Location() {
       // Update the state with the fetched weather data
       setWeather(weather_data);
     } catch (error) {
+      // Set the ci
+      setCity("City is not found...");
       console.error("Error fetching data:", error);
       return error;
     } finally {

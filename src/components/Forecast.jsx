@@ -44,11 +44,20 @@ export function Forecast({ day_weather }) {
 
   return (
     <div className="forecast">
-      <div>{getMonDay(new Date(day_weather.dt * 1000))}</div>
-      <img src={getWeatherPic(day_weather.weather[0].id)} />
-      <p>{day_weather.weather[0].main}</p>
-      <p>{parseInt(day_weather.temp.max - 273.15) + "℃"}</p>
-      <p>{parseInt(day_weather.temp.min - 273.15) + "℃"}</p>
+      <div className="date">{getMonDay(new Date(day_weather.dt * 1000))}</div>
+      <img
+        src={getWeatherPic(day_weather.weather[0].id)}
+        className="weather_img"
+      />
+      <p className="main_weather">{day_weather.weather[0].main}</p>
+      <div className="max_tmp">
+        <label>MAX</label>
+        <p>{parseInt(day_weather.temp.max - 273.15) + "℃"}</p>
+      </div>
+      <div className="min_tmp">
+        <label>MIN</label>
+        <p>{parseInt(day_weather.temp.min - 273.15) + "℃"}</p>
+      </div>
     </div>
   );
 }

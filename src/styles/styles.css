@@ -15,11 +15,35 @@ footer {
     rgb(15, 94, 128, 0.3)
   );
   color: white;
-  padding: 10px;
+  padding: 5px 20px;
+  display: flex;
+  justify-content: end;
+}
+
+.about a {
+  color: white;
+  margin: 15px;
+}
+
+.about a:hover {
+  text-decoration: underline;
+}
+
+header .about {
+  text-align: right;
+}
+
+header h1 {
+  flex-grow: 1;
+  text-align: left;
 }
 
 header h1::first-letter {
   font-size: 40px;
+}
+
+footer {
+  text-align: center;
 }
 
 form {
@@ -32,6 +56,7 @@ form {
 form p {
   margin: 3px;
 }
+
 form label {
   display: block;
   margin: 5px;
@@ -42,7 +67,9 @@ form label {
 form #search_box {
   border: 2px solid gray;
   border-radius: 5px;
+  margin-right: 5px;
 }
+
 .search_btn {
   background-color: gray;
   border: solid 2px gray;
@@ -64,48 +91,40 @@ form #search_box {
 .location {
   margin: 10px;
 }
-.three_days_forecast {
+/* .three_days_forecast {
   background-color: white;
-}
+} */
 
 .forecast {
-  /* border: 2px solid #737373; */
+  border: 2px solid white;
   border-radius: 15px;
   background-color: #969696c0;
-  background-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0),
-    rgb(15, 94, 128, 0.3)
-  );
 
   color: white;
   padding: 20px;
   margin: 10px;
+
+  display: grid;
+  place-items: center;
 }
 
-.date {
+.forecast .date {
   font-size: 40px;
-  font-family: Arial, Helvetica, sans-serif;
   margin: 10px 0 20px 0;
 }
-
-.weather {
-  /* background-color: #c0c0c0;
-  border-radius: 15px; */
+.forecast .main_weather {
   margin: 5px;
   padding: 10px;
 }
 
-.highest_temp p,
-.lowest_temp p,
-.precipitation p {
+.forecast .max_tmp p,
+.forecast .min_tmp p {
   display: inline-block;
   margin: 10px;
   font-size: 30px;
 }
 
-.highest_temp label,
-.lowest_temp label,
-.precipitation label {
+.forecast .max_tmp label,
+.forecast .min_tmp label {
   font-size: 20px;
 }
